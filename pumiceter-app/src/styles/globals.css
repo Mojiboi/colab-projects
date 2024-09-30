@@ -1,3 +1,95 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* * {
+  outline: 1px solid red;
+} */
+section .wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  /* Maintain height */
+  background: url('/assets/wave.png') repeat-x;
+  background-size: 1000px 80px;
+  /* Set a fixed width for the background image to show one crest and trough */
+  overflow: hidden;
+}
+
+section .wave.wave1 {
+  animation: animate 7s linear infinite;
+}
+
+/* Keyframes for the wave animation */
+@keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+
+  100% {
+    background-position-x: 1000px;
+    /* Move the background only by its defined width */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  section .wave {
+    height: 80px;
+    /* Maintain height */
+    background-size: 800px 80px;
+    /* Adjust size to show one crest and trough */
+  }
+
+  @keyframes animate {
+    0% {
+      background-position-x: 0;
+    }
+
+    100% {
+      background-position-x: 800px;
+      /* Adjust for medium screen size */
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  section .wave {
+    height: 60px;
+    /* Maintain a slightly smaller height for smaller screens */
+    background-size: 600px 60px;
+    /* Adjust size to show one crest and trough */
+  }
+
+  @keyframes animate {
+    0% {
+      background-position-x: 0;
+    }
+
+    100% {
+      background-position-x: 600px;
+      /* Adjust for small screen size */
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  section .wave {
+    height: 50px;
+    /* Maintain a slightly smaller height for very small screens */
+    background-size: 400px 50px;
+    /* Adjust size to show one crest and trough */
+  }
+
+  @keyframes animate {
+    0% {
+      background-position-x: 0;
+    }
+
+    100% {
+      background-position-x: 400px;
+      /* Adjust for very small screens */
+    }
+  }
+}

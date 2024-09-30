@@ -7,9 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        'playfair': ['"Playfair Display"', 'serif'],
+        'opensans': ['"Open Sans"', 'sans-serif'],
+        'zenmaru': ['"Zen Maru Gothic"', 'sans-serif'],
       },
     },
   },
