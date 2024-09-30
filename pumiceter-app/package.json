@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@gsap/react": "^2.1.1",
     "gsap": "^3.12.5",
+=======
+>>>>>>> 45666637c54b64a2155159980b13412f0c6514c3
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
