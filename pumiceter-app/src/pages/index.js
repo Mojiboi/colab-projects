@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { gsap } from "gsap";
-import { useEffect, useState } from "react";
 import FeedbackForm from "@/components/Feedback"
 import { BsMouse } from "react-icons/bs";
 
@@ -113,6 +112,45 @@ export default function Home() {
         </nav>
       </section>
 
+      <section
+        id="home"
+        className="relative flex items-center justify-center overflow-hidden h-[calc(100vh-150px)]"
+        style={{
+          backgroundImage: `url('/assets/landingpage-2.jpg')`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="relative z-10 text-center text-white">
+          <div className="flex flex-col items-center">
+            <div className="rounded-lg p-4 mb-10">
+              <h1 className=" h1_first whitespace-nowrap text-[40px] lg:text-[100px] font-bold text-white font-playfair" style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)' }}>
+                Pumice Products
+              </h1>
+              <div className="flex items-center">
+                <span className="by whitespace-nowrap text-[40px] lg:text-[100px] italic text-white font-opensans" style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)' }}>
+                  by
+                </span>
+                <h1 className="h1_second whitespace-nowrap text-[40px] lg:text-[100px] font-bold ml-5 text-black font-playfair" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}>
+                  PUMICETERS
+                </h1>
+              </div>
+            </div>
+            {/* Button Section */}
+            <button className="home_button bg-white p-4 lg:px-6 lg:py-4 hover:border-white hover:text-white border hover:bg-transparent text-black font-bold text-lg rounded-full flex items-center justify-center transition-colors duration-500" style={{ boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)' }}>
+              Get In Touch
+              <MdOutlineArrowOutward className="ml-2" size={24} />
+            </button>
+          </div>
+        </div>
+        {/* The responsive wave */}
+        <div className="wave wave1"></div>
+      </section>
+
       <section id="Product">
         <div className=" mx-auto px-10">
           <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
@@ -158,7 +196,6 @@ export default function Home() {
         </div>
 
       </section>
-
 
       <section id="About Us" className="py-12 bg-white">
         <div className="container mx-auto px-6 text-center">
