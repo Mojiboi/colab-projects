@@ -1,16 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { gsap } from "gsap";
 import FeedbackForm from "@/components/Feedback"
 import { BsMouse } from "react-icons/bs";
-
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const navLinks = ['HOME', 'PRODUCTS', 'ABOUT US', 'FEEDBACK', 'CONTACT'];
-
+  const LandingSection = useRef(null);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const section = LandingSection.current;
+    gsap.fromTo(
+      section,
+      { backgroundPosition: '0 100px' }, // Start at y = 100px
+      {
+        backgroundPosition: '0 0', // End at the original position (y = 0)
+        duration: 3,
+        ease: 'power1.inOut', // Smooth easing
+      }
+    );
+  }, []);
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -29,6 +43,8 @@ export default function Home() {
 
   const [scrollDirection, setScrollDirection] = useState("down");
 
+
+
   useEffect(() => {
     let lastScrollTop = 0;
     const handleScroll = () => {
@@ -38,6 +54,55 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const revealRefs = useRef([]);
+  revealRefs.current = [];
+
+  // Function to add elements to the refs array
+  const addToRefs = (el) => {
+    if (el && !revealRefs.current.includes(el)) {
+      revealRefs.current.push(el);
+    }
+  };
+
+  // Use useLayoutEffect to trigger GSAP animations
+  useLayoutEffect(() => {
+    revealRefs.current.forEach((el) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, x: -100 }, // Initial state
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'sine.easeOut',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%', // Adjust as needed
+            markers: false, // For debugging, remove in production
+          },
+        }
+      );
+    });
+  }, []);
+  const mouseSectionRef = useRef(null);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (mouseSectionRef.current) {
+        const scrollPosition = window.scrollY; // Get current scroll position
+        // Adjust the position of the mouse section based on scroll position
+        mouseSectionRef.current.style.transform = `translateY(${scrollPosition / 6}px)`;
+      }
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -81,16 +146,36 @@ export default function Home() {
 
               {/* Mobile Menu Button */}
               <div className="md:hidden">
-                <button onClick={toggleMenu} className="text-white p-2 rounded-md">
-                  <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button
+                  onClick={toggleMenu}
+                  className="text-white p-2 sm:p-3 md:p-4 rounded-md transition-all"
+                >
+                  <svg
+                    className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
                     {isOpen ? (
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     ) : (
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
                     )}
                   </svg>
                 </button>
               </div>
+
             </div>
           </div>
 
@@ -113,6 +198,7 @@ export default function Home() {
       </section>
 
       <section
+        ref={LandingSection}
         id="home"
         className="relative flex items-center justify-center overflow-hidden h-[calc(100vh-150px)]"
         style={{
@@ -127,40 +213,96 @@ export default function Home() {
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative z-10 text-center text-white">
           <div className="flex flex-col items-center">
-            <div className="rounded-lg p-4 mb-10">
-              <h1 className=" h1_first whitespace-nowrap text-[40px] lg:text-[100px] font-bold text-white font-playfair" style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)' }}>
+            <div className="rounded-lg p-4">
+              <h1
+                className="h1_first whitespace-nowrap text-[32px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] font-bold text-white font-playfair"
+                style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)' }}
+              >
                 Pumice Products
               </h1>
-              <div className="flex items-center">
-                <span className="by whitespace-nowrap text-[40px] lg:text-[100px] italic text-white font-opensans" style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)' }}>
+              <div className="flex items-center lg:mt-[-55px]">
+                <span
+                  className="by whitespace-nowrap text-[32px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] italic text-white font-opensans"
+                  style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)' }}
+                >
                   by
                 </span>
-                <h1 className="h1_second whitespace-nowrap text-[40px] lg:text-[100px] font-bold ml-5 text-black font-playfair" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}>
+                <h1
+                  className="h1_second whitespace-nowrap text-[32px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] font-bold ml-5 text-black font-playfair"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}
+                >
                   PUMICETERS
                 </h1>
               </div>
             </div>
+
             {/* Button Section */}
-            <button className="home_button bg-white p-4 lg:px-6 lg:py-4 hover:border-white hover:text-white border hover:bg-transparent text-black font-bold text-lg rounded-full flex items-center justify-center transition-colors duration-500" style={{ boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)' }}>
+            <button
+              className="home_button bg-white p-3 lg:px-6 lg:py-4 md:p-4 sm:p-2 hover:border-white hover:text-white border hover:bg-transparent text-black font-bold text-base lg:text-lg sm:text-sm rounded-full flex items-center justify-center transition-colors duration-500"
+              style={{ boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)' }}
+            >
               Get In Touch
-              <MdOutlineArrowOutward className="ml-2" size={24} />
+              <MdOutlineArrowOutward className="ml-2 lg:w-6 lg:h-6 md:w-5 md:h-5 sm:w-4 sm:h-4" />
             </button>
+
           </div>
         </div>
         {/* The responsive wave */}
         <div className="wave wave1"></div>
       </section>
 
-      <section id="Product">
-        <div className=" mx-auto px-10">
-          <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 place-items-center gap-6">
+      <section
+        id="Product">
+        <div className='px-6 sm:px-10 lg:px-56 mx-auto pt-14 lg:mt-20'>
 
-            <div className={`flex items-center relative py-36 px-16 `}>
-              <BsMouse className={`text-6xl absolute mt-8 left-28 z-0 transform transition-transform duration-300 ${scrollDirection === "up" ? "-translate-y-10" : "translate-y-0"}`} />
-              <img src="/assets/Scroll-Down.svg" className="h-34 w-34 justify-start animate-spin duration-1000 " style={{ animationDuration: '4s' }} alt="Scroll Down" />
-              <p class="text-gray-400 text-right font-bold">This is a test string </p>
+          <div className="mx-auto pt-14">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+              {/* Left Text Section */}
+              <div className="text-left lg:w-1/2 w-full lg:pr-10">
+                <span ref={addToRefs} className="font-opensans block font-light lg:mb-6 plans_span">
+                  WE HAVE THE
+                </span>
+
+                {/* PRODUCTS on its own line */}
+                <h2 ref={addToRefs} className="plans_h2 text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-bold font-playfair leading-none">
+                  PRODUCTS
+                </h2>
+
+                {/* {you}{WANT} on the same line with little space */}
+                <div className="flex items-center">
+                  <span ref={addToRefs} className="plans_span2 text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-zenmaru leading-none">you</span>
+                  <h2 ref={addToRefs} className="plans_h2_second text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-bold font-playfair leading-none ml-2">
+                    WANT
+                  </h2>
+                </div>
+
+                {/* Horizontal line aligned with the top of the paragraph */}
+                <div className="flex items-start lg:mt-10">
+                  <div ref={addToRefs} className="plans-line bg-black h-[1.2px] w-[82px] sm:w-[104px] md:w-[124px] lg:w-[166px] hidden md:block mt-4"></div>
+                  <p ref={addToRefs} className="plans_para pl-4 text-justify lg:text-left max-w-[40ch] font-opensans font-light ml-0 lg:ml-10 text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] lg:m-0 m-4">
+                    Pumice powder is a natural, eco-friendly exfoliant that gently removes dead skin cells, leaving your skin smooth and rejuvenated. Its fine, porous texture also makes it ideal for polishing surfaces, providing a non-toxic, effective solution for deep cleaning.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Section with Centered Mouse Icon and Spinning SVG (Hidden on Small Screens) */}
+              <div ref={mouseSectionRef} className="-mt-80 hidden lg:flex items-center justify-center relative lg:w-1/2 h-full">
+                {/* Centered Mouse Icon */}
+                <BsMouse className="mouse-icon text-5xl absolute z-10" />
+
+                {/* Spinning SVG */}
+                <img
+
+                  src="/assets/Scroll-Down.svg"
+                  className="scroll-svg h-34 w-34 animate-spin"
+                  style={{ animationDuration: '7.5s' }}
+                  alt="Scroll Down"
+                />
+              </div>
             </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 place-items-center gap-6">
             <div class="bg-black shadow-md rounded-lg w-80 overflow-hidden hover:scale-95 transform transition duration-1000 ease-in animate-slide-left">
               <img src="/assets/pumices-stone.png" alt="Product 1" class="w-2/4 h-52 object-cover mx-auto hover:scale-105 transform transition duration-300 ease-in animate-slide-left" />
               <div class="p-4">
