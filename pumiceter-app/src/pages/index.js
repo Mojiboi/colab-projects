@@ -253,7 +253,7 @@ export default function Home() {
 
       <section
         id="Product">
-        <div className='px-6 sm:px-10 lg:px-56 mx-auto pt-14 lg:mt-20'>
+        <div className='px-6 sm:px-10  mx-auto pt-14 lg:mt-20'>
 
           <div className="mx-auto pt-14">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between">
@@ -277,16 +277,28 @@ export default function Home() {
                 </div>
 
                 {/* Horizontal line aligned with the top of the paragraph */}
-                <div className="flex items-start lg:mt-10">
-                  <div ref={addToRefs} className="plans-line bg-black h-[1.2px] w-[82px] sm:w-[104px] md:w-[124px] lg:w-[166px] hidden md:block mt-4"></div>
-                  <p ref={addToRefs} className="plans_para pl-4 text-justify lg:text-left max-w-[40ch] font-opensans font-light ml-0 lg:ml-10 text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] lg:m-0 m-4">
-                    Pumice powder is a natural, eco-friendly exfoliant that gently removes dead skin cells, leaving your skin smooth and rejuvenated. Its fine, porous texture also makes it ideal for polishing surfaces, providing a non-toxic, effective solution for deep cleaning.
-                  </p>
+                <div className="lg:mt-10">
+                  <div className="flex items-start">
+                    <div ref={addToRefs} className="plans-line bg-black h-[1.2px] w-[82px] sm:w-[104px] md:w-[124px] lg:w-[166px] hidden md:block mt-4"></div>
+                    <p ref={addToRefs} className="plans_para pl-4 text-justify lg:text-left max-w-[50ch] font-opensans font-light text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] lg:m-0 m-4">
+                      Pumice powder is a natural, eco-friendly exfoliant that gently removes dead skin cells, leaving your skin smooth and rejuvenated. Its fine, porous texture also makes it ideal for polishing surfaces, providing a non-toxic, effective solution for deep cleaning.
+                    </p>
+                  </div>
+
+                  {/* Button aligned below paragraph */}
+                  <div className="flex justify-end mt-4 lg:mt-6">
+                    <button className="-ml-10 border-b-2 border-black text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold flex items-center">
+                      About us
+                      <MdOutlineArrowOutward className="lg:w-8 lg:h-8 md:w-5 md:h-5 sm:w-4 sm:h-4" />
+                    </button>
+
+                  </div>
                 </div>
+
               </div>
 
               {/* Right Section with Centered Mouse Icon and Spinning SVG (Hidden on Small Screens) */}
-              <div ref={mouseSectionRef} className="-mt-80 hidden lg:flex items-center justify-center relative lg:w-1/2 h-full">
+              <div ref={mouseSectionRef} className="-mt-80 mx-36 hidden lg:flex items-center justify-center relative lg:w-1/2 h-full">
                 {/* Centered Mouse Icon */}
                 <BsMouse className="mouse-icon text-5xl absolute z-10" />
 
@@ -299,41 +311,84 @@ export default function Home() {
                   alt="Scroll Down"
                 />
               </div>
+
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 place-items-center gap-6">
-            <div class="bg-black shadow-md rounded-lg w-80 overflow-hidden hover:scale-95 transform transition duration-1000 ease-in animate-slide-left">
-              <img src="/assets/pumices-stone.png" alt="Product 1" class="w-2/4 h-52 object-cover mx-auto hover:scale-105 transform transition duration-300 ease-in animate-slide-left" />
-              <div class="p-4">
-                <h3 class="text-white text-center text-xl font-semibold">Pumice stone</h3>
-                <p class="text-gray-400 text-center mt-2">Description of product 1 goes here.</p>
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 place-items-center gap-6 px-6 lg:px-40">
+
+            {/* First Item */}
+            <div className="relative w-full max-w-[450px]">
+              {/* NEW Label */}
+              <div className="absolute top-4 right-4 bg-transparent border border-white text-white px-2 py-2 text-xs font-bold z-10">
+                NEW
               </div>
+              {/* Main Div */}
+              <div className="bg-black shadow-md w-full h-[400px] lg:h-[600px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
+                style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
+              >
+                <img src="/assets/pumices-stone.png" alt="Product 1" className="w-full h-full lg:w-96 lg:h-[600px] object-cover" />
+              </div>
+              {/* Heading outside the black div */}
+              <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
+                Pumice stone
+              </h3>
             </div>
 
-            <div class="bg-black shadow-md  w-80 rounded-lg right-10 overflow-hidden hover:scale-95 transform transition duration-1000 ease-in animate-slide-right">
-              <img src="/assets/powder.png" alt="Product 1" class="w-2/4 h-52 object-cover mx-auto hover:scale-105 transform transition duration-300 ease-in animate-slide-right" />
-              <div class="p-4">
-                <h3 class="text-white text-center text-xl font-semibold">Pumice powder</h3>
-                <p class="text-gray-400 text-center mt-2">Description of product 1 goes here.</p>
+            {/* Second Item */}
+            <div className="relative w-full max-w-[450px] lg:-mt-[520px]">
+              {/* NEW Label */}
+              <div className="absolute top-3 right-4 bg-transparent border border-white text-white px-2 py-2 text-xs font-bold z-10">
+                NEW
               </div>
+              {/* Main Div */}
+              <div className="bg-black shadow-md w-full h-[300px] lg:h-[400px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
+                style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
+              >
+                <img src="/assets/powder.png" alt="Product 1" className="sm:w-64 sm:h-[280px] md:w-80 md:h-[340px] lg:w-96 lg:h-[420px] object-cover" />
+              </div>
+              {/* Heading */}
+              <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
+                Pumice Powder
+              </h3>
             </div>
 
-            <div class="bg-black shadow-md rounded-lg w-80 overflow-hidden hover:scale-95 transform transition duration-1000 ease-in animate-slide-left">
-              <img src="/assets/200-mesh.png" alt="Product 1" class="w-2/5 h-52 object-cover mx-auto hover:scale-105 transform transition duration-300 ease-in" />
-              <div class="p-4">
-                <h3 class="text-white text-center text-xl font-semibold">pumice 200 mesh powder</h3>
-                <p class="text-gray-400 text-center mt-2">Description of product 1 goes here.</p>
+            {/* Third Item */}
+            <div className="relative w-full max-w-[450px] mt-20">
+              {/* HOT Label */}
+              <div className="absolute top-3 right-4 bg-transparent border border-white text-white px-2 py-2 text-xs font-bold z-10">
+                HOT
               </div>
+              {/* Main Div */}
+              <div className="bg-black shadow-md w-full h-[300px] lg:h-[400px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
+                style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
+              >
+                <img src="/assets/200-mesh.png" alt="Product 1" className="sm:w-60 sm:h-[200px] lg:w-96 lg:h-[320px] md:w-80 md:h-[240px] object-cover" />
+              </div>
+              {/* Heading */}
+              <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
+                Pumice stone
+              </h3>
             </div>
 
-            <div class="bg-black shadow-md  w-80 rounded-lg  overflow-hidden hover:scale-95 transform transition duration-1000 ease-in animate-slide-right">
-              <img src="/assets/pumice-150-mesh-powder.png" alt="Product 1" class="w-2/5 h-52 object-cover mx-auto hover:scale-105 transform transition duration-300 ease-in" />
-              <div class="p-4">
-                <h3 class="text-white text-center text-xl font-semibold">pumice 150 mesh powder</h3>
-                <p class="text-gray-400 text-center mt-2">Description of product 1 goes here.</p>
+            {/* Fourth Item */}
+            <div className="relative w-full max-w-[450px] mt-20 lg:-mt-96">
+              {/* HOT Label */}
+              <div className="absolute top-4 right-4 bg-transparent border border-white text-white px-2 py-2 text-xs font-bold z-10">
+                HOT
               </div>
+              {/* Main Div */}
+              <div className="bg-black shadow-md w-full h-[400px] lg:h-[600px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
+                style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
+              >
+                <img src="/assets/pumice-150-mesh-powder.png" alt="Product 1" className="sm:w-60 sm:h-[270px] lg:w-96 lg:h-[400px] md:w-80 md:h-[320px] object-cover" />
+              </div>
+              {/* Heading */}
+              <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
+                Pumice stone
+              </h3>
             </div>
+          
           </div>
         </div>
 

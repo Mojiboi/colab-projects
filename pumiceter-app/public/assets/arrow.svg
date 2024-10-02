@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 45" width="44" height="45">
+  <style>
+    .axz {
+      fill: #FFFFFF; /* Change fill color to white */
+      stroke: #FFFFFF; /* Change stroke color to white */
+      stroke-miterlimit: 10;
+      stroke-width: 3;
+    }
+  </style>
+  <path class="axz" d="m3.6 2v2.9h33.2l-34.8 35 2.5 2.2 34.9-34.8v33.4h2.9v-38.7z"></path>
+</svg>
