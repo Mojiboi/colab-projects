@@ -5,16 +5,15 @@ import { gsap, TweenMax, ScrollSmoother } from "gsap";
 import FeedbackForm from "@/components/Feedback"
 import { BsMouse } from "react-icons/bs";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { Player } from '@lottiefiles/react-lottie-player';
+
+
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-
-
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const navLinks = ['HOME', 'PRODUCTS', 'ABOUT US', 'FEEDBACK', 'CONTACT'];
   const LandingSection = useRef(null);
-  const contentRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -48,54 +47,15 @@ export default function Home() {
     });
   }, []);
 
-  const [scrollDirection, setScrollDirection] = useState("down");
-
-
-
-  useEffect(() => {
-    let lastScrollTop = 0;
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      setScrollDirection(scrollTop > lastScrollTop ? "down" : "up");
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   const revealRefs = useRef([]);
   revealRefs.current = [];
 
-  // Function to add elements to the refs array
   const addToRefs = (el) => {
     if (el && !revealRefs.current.includes(el)) {
       revealRefs.current.push(el);
     }
   };
 
-  // Use useLayoutEffect to trigger GSAP animations
-  // useLayoutEffect(() => {
-  //   revealRefs.current.forEach((el) => {
-  //     gsap.fromTo(
-  //       el,
-  //       { opacity: 0, x: -100 }, // Initial state
-  //       {
-  //         opacity: 1,
-  //         x: 0,
-  //         duration: 1,
-  //         ease: 'sine.easeOut',
-  //         scrollTrigger: {
-  //           trigger: el,
-  //           start: 'top 85%', // Adjust as needed
-  //           markers: false, // For debugging, remove in production
-  //         },
-  //       }
-  //     );
-  //   });
-  // }, []);
   const mouseSectionRef = useRef(null);
   useEffect(() => {
     const handleScroll = () => {
@@ -136,7 +96,7 @@ export default function Home() {
       );
     });
   }, []);
-  
+
   return (
     <>
       {/* Disable overflow to avoid scrollbars */}
@@ -144,11 +104,11 @@ export default function Home() {
     html, body {
       overflow-x: hidden;
     }`}
-    </style>
-    
-      <div  >
+      </style>
 
+      <div>
 
+        {/* nav */}
         <section id='home'>
           <nav className="bg-black p-4 sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -232,7 +192,7 @@ export default function Home() {
         <section
           ref={LandingSection}
           id="home"
-          className="relative flex items-center justify-center overflow-hidden h-[calc(100vh-150px)]"
+          className="landing_img relative flex items-center justify-center overflow-hidden h-[calc(100vh-150px)]"
           style={{
             backgroundImage: `url('/assets/landingpage-2.jpg')`,
             backgroundAttachment: 'fixed',
@@ -254,14 +214,14 @@ export default function Home() {
                 </h1>
                 <div className="flex items-center lg:mt-[-55px]">
                   <span
-                    className="by whitespace-nowrap text-[32px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] italic text-white font-opensans"
+                    className="by font-light  whitespace-nowrap text-[32px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] italic text-white font-opensans"
                     style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.3)' }}
                   >
                     by
                   </span>
                   <h1
                     className="h1_second whitespace-nowrap text-[32px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] font-bold ml-5 text-black font-playfair"
-                    style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}
+                    style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                   >
                     PUMICETERS
                   </h1>
@@ -296,14 +256,18 @@ export default function Home() {
                   </span>
 
                   {/* PRODUCTS on its own line */}
-                  <h2 ref={addToRefs} className="plans_h2 text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-bold font-playfair leading-none">
+                  <h2 ref={addToRefs} className="plans_h2 text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-bold font-playfair leading-none"
+                    style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                  >
                     PRODUCTS
                   </h2>
 
                   {/* {you}{WANT} on the same line with little space */}
                   <div className="flex items-center">
-                    <span ref={addToRefs} className="plans_span2 text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-zenmaru leading-none">you</span>
-                    <h2 ref={addToRefs} className="plans_h2_second text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-bold font-playfair leading-none ml-2">
+                    <span ref={addToRefs} className="plans_span2 text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-zenmaru leading-none italic font-light">you</span>
+                    <h2 ref={addToRefs} className="plans_h2_second text-[45px] sm:text-[40px] md:text-[50px] lg:text-[80px] font-bold font-playfair leading-none ml-2"
+                      style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                    >
                       WANT
                     </h2>
                   </div>
@@ -319,7 +283,9 @@ export default function Home() {
 
                     {/* Button aligned below paragraph */}
                     <div className="flex justify-end mt-4 lg:mt-6">
-                      <button ref={addToRefs} className="-ml-10 border-b-2 border-black text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold flex items-center">
+                      <button ref={addToRefs} className="-ml-10 border-b-2 border-black text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold flex items-center"
+                        style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                      >
                         About us
                         <MdOutlineArrowOutward className="lg:w-8 lg:h-8 md:w-5 md:h-5 sm:w-4 sm:h-4" />
                       </button>
@@ -356,19 +322,21 @@ export default function Home() {
                   NEW
                 </div>
                 {/* Main Div */}
-                <div className="bg-black shadow-md w-full h-[400px] lg:h-[600px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
+                <div className="bg-black shadow-md w-full h-[400px] lg:h-[700px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
                   style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
                 >
                   <img src="/assets/pumices-stone.png" alt="Product 1" className="w-full h-full lg:w-96 lg:h-[600px] object-cover" />
                 </div>
                 {/* Heading outside the black div */}
-                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
-                  Pumice stone
+                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                >
+                  Pumice Stone
                 </h3>
               </div>
 
               {/* Second Item */}
-              <div ref={addToRefs} className="relative w-full max-w-[450px] lg:-mt-[520px]">
+              <div ref={addToRefs} className="relative w-full max-w-[450px] lg:-mt-[500px] sm:-mb-10">
                 {/* NEW Label */}
                 <div className="absolute top-3 right-4 bg-transparent border border-white text-white px-2 py-2 text-xs font-bold z-10">
                   NEW
@@ -380,13 +348,15 @@ export default function Home() {
                   <img src="/assets/powder.png" alt="Product 1" className="sm:w-64 sm:h-[280px] md:w-80 md:h-[340px] lg:w-96 lg:h-[420px] object-cover" />
                 </div>
                 {/* Heading */}
-                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
+                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                >
                   Pumice Powder
                 </h3>
               </div>
 
               {/* Third Item */}
-              <div ref={addToRefs} className="relative w-full max-w-[450px] mt-20">
+              <div ref={addToRefs} className="relative w-full max-w-[450px] lg:mt-20 sm:-mb-10 ">
                 {/* HOT Label */}
                 <div className="absolute top-3 right-4 bg-transparent border border-white text-white px-2 py-2 text-xs font-bold z-10">
                   HOT
@@ -398,26 +368,30 @@ export default function Home() {
                   <img src="/assets/200-mesh.png" alt="Product 1" className="sm:w-60 sm:h-[200px] lg:w-96 lg:h-[320px] md:w-80 md:h-[240px] object-cover" />
                 </div>
                 {/* Heading */}
-                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
-                  Pumice stone
+                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                >
+                  Pumice 200 Mesh
                 </h3>
               </div>
 
               {/* Fourth Item */}
-              <div ref={addToRefs} className="relative w-full max-w-[450px] mt-20 lg:-mt-96">
+              <div ref={addToRefs} className="relative w-full max-w-[450px] lg:-mt-96">
                 {/* HOT Label */}
                 <div className="absolute top-4 right-4 bg-transparent border border-white text-white px-2 py-2 text-xs font-bold z-10">
                   HOT
                 </div>
                 {/* Main Div */}
-                <div className="bg-black shadow-md w-full h-[400px] lg:h-[600px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
+                <div className="bg-black shadow-md w-full h-[400px] lg:h-[700px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
                   style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
                 >
                   <img src="/assets/pumice-150-mesh-powder.png" alt="Product 1" className="sm:w-60 sm:h-[270px] lg:w-96 lg:h-[400px] md:w-80 md:h-[320px] object-cover" />
                 </div>
                 {/* Heading */}
-                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left">
-                  Pumice stone
+                <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                >
+                  Pumice 300 Mesh
                 </h3>
               </div>
 
