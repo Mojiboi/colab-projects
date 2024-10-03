@@ -400,10 +400,22 @@ export default function Home() {
 
         </section>
 
-        <section id="About Us" className="py-12 bg-white">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-4">About Us</h2>
-            <p className="text-gray-600">At Pumiceter, we understand that sourcing the best pumice is not just a process—it's an art. Our success begins at the very origin, where we carefully select only the finest raw pumice from renowned volcanic regions as Chenab border and areas from Balochistan Pakistan. Our rigorous sourcing strategy ensures that every product we deliver meets the highest standards of purity and performance, empowering our clients with materials they can rely on.
+        <section id="About Us" className="mt-20 lg:mt-40 py-12 bg-white bg"
+          style={{
+            backgroundImage: `url('/assets/about-us-image.png')`,
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            opacity:50,
+            
+          }}
+        >
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <div className="mx-auto px-6 z-10">
+            <span className='font-opensans font-light text-white text-left'>YOU CAN KNOW</span>
+            <h2 className="text-[80px] text-white font-bold font-playfair">About Us</h2>
+            <p className="text-white font-zenmaru font-light bg-black p-4">At Pumiceter, sourcing the finest pumice is our passion. We meticulously select premium pumice from the prestigious volcanic regions of the Chenab border and Balochistan, Pakistan. Our commitment to purity and performance means you can trust our products to deliver exceptional quality. Choose Pumiceter—where excellence meets reliability.
             </p>
             <article className="rounded-lg shadow-md p-4 mb-5 bg-black">
               <h3 className="text-lg font-medium text-white mb-2">Sourcing strategy</h3>
