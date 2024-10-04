@@ -5,7 +5,7 @@ import { gsap, TweenMax, ScrollSmoother } from "gsap";
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { BsMouse } from "react-icons/bs";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-
+import emailjs from 'emailjs-com';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -96,16 +96,30 @@ export default function Home() {
     });
   }, []);
 
-  const [feedbacks, setFeedbacks] = useState([]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const message = e.target.message.value;
-
-    setFeedbacks([...feedbacks, { name, message }]);
-    e.target.reset();  // Reset form
+  const sendEmail = (e) => {
+    e.preventDefault(); // Prevent the default form submission
+  
+    emailjs
+      .sendForm(
+        'Pumiceter@gmail.com', // Replace with your EmailJS service ID
+        'template_j7ifqsn', // Replace with your EmailJS template ID
+        e.target,
+        'sdOr2B05Aa9uYQMh2' // Replace with your EmailJS user ID
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert('Feedback successfully sent!');
+        },
+        (error) => {
+          console.log(error.text);
+          alert('There was an error, please try again.');
+        }
+      );
+  
+    e.target.reset(); // Reset form after submission
   };
+
 
   return (
     <>
@@ -138,7 +152,7 @@ export default function Home() {
                       <a
                         key={link}
                         href={`#${link.toLowerCase().replace(/\s+/g, '')}`}
-                        className="items text-white px-3 py-2 rounded-full text-sm font-bold hover:text-black hover:bg-white transition-colors duration-500 "
+                        className="items text-white px-3 py-2 rounded-full text-sm font-bold hover:text-black hover:bg-white transition-colors duration-500"
                       >
                         {link}
                       </a>
@@ -177,7 +191,6 @@ export default function Home() {
                     </svg>
                   </button>
                 </div>
-
               </div>
             </div>
 
@@ -198,6 +211,7 @@ export default function Home() {
             </div>
           </nav>
         </section>
+
 
 
         {/* Landing page */}
@@ -241,13 +255,14 @@ export default function Home() {
               </div>
 
               {/* Button Section */}
-              <button
+              <a
+                href="#contact"  // This should match the id of your contact section
                 className="home_button bg-white p-3 lg:px-6 lg:py-4 md:p-4 sm:p-2 hover:border-white hover:text-white border hover:bg-transparent text-black font-bold text-base lg:text-lg sm:text-sm rounded-full flex items-center justify-center transition-colors duration-500"
                 style={{ boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)' }}
               >
                 Get In Touch
                 <MdOutlineArrowOutward className="ml-2 lg:w-6 lg:h-6 md:w-5 md:h-5 sm:w-4 sm:h-4" />
-              </button>
+              </a>
 
             </div>
           </div>
@@ -258,7 +273,7 @@ export default function Home() {
 
         {/* Product Page */}
         <section
-          id="Product">
+          id="products">
           <div className='px-6 sm:px-10  mx-auto pt-14 lg:mt-20'>
 
             <div className="mx-auto pt-14">
@@ -297,12 +312,12 @@ export default function Home() {
 
                     {/* Button aligned below paragraph */}
                     <div className="flex justify-end mt-4 lg:mt-6">
-                      <button ref={addToRefs} className="-ml-10 border-b-2 border-black text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold flex items-center"
+                      <a href='#aboutus' ref={addToRefs} className="-ml-10 border-b-2 border-black text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] font-semibold flex items-center"
                         style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                       >
                         About us
                         <MdOutlineArrowOutward className="lg:w-8 lg:h-8 md:w-5 md:h-5 sm:w-4 sm:h-4" />
-                      </button>
+                      </a>
 
                     </div>
                   </div>
@@ -416,7 +431,7 @@ export default function Home() {
 
 
         {/* About Us with Feedback */}
-        <section id="About Us" className="mt-20 lg:mt-40 py-12 bg-white bg"
+        <section id="aboutus" className="mt-20 lg:mt-40 py-12 bg-white bg"
           style={{
             backgroundImage: `url('/assets/about-us-image.png')`,
             backgroundAttachment: 'fixed',
@@ -516,7 +531,7 @@ export default function Home() {
           </div>
 
           {/* <FeedbackForm /> */}
-          <section id="Client Feedback" className='mt-20'>
+          <section id="feedback" className='mt-20'>
             <div className=" mx-auto px-6">
               <span ref={addToRefs} className='font-opensans font-light text-white text-left text-[14px] lg:text-[20px]'>WE DO NEED YOUR</span>
               <h2 ref={addToRefs} className="mb-10 text-[30px] md:text-[50px] lg:text-[80px] text-white font-bold font-playfair"
@@ -547,13 +562,13 @@ export default function Home() {
                   style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                 >Leave your feedback
                 </h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={sendEmail} className="space-y-4">
                   <div>
                     <label ref={addToRefs} htmlFor="name" className="block text-lg font-medium text-black mb-3 font-opensans"
                       style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                     >Name
                     </label>
-                    <input ref={addToRefs} type="text" id="name" name="name" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md shadow-sm sm:text-sm"
+                    <input ref={addToRefs} type="text" id="name" name="from_name" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md shadow-sm sm:text-sm"
                       style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                       required />
                   </div>
@@ -570,17 +585,6 @@ export default function Home() {
                 </form>
               </div>
 
-
-
-              {/* Display Feedback */}
-              <div className="space-y-6">
-                {feedbacks.map((feedback, index) => (
-                  <div key={index} className="bg-white p-4 rounded-lg shadow-md">
-                    <h4 className="text-lg font-semibold">{feedback.name}</h4>
-                    <p className="text-gray-600">{feedback.message}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </section>
 
@@ -588,8 +592,7 @@ export default function Home() {
 
 
         {/* Contact Us */}
-        <section id="Contact-Us" className="relative">
-          <div className="-mt-11 lg:-mt-[55px] wave wave1 absolute top-0 left-0 right-0 bg-black"></div> {/* Positioned at the top of the section */}
+        <section id="contact" className="relative">
 
           <div className=" bg-black px-6 md:px-32 py-16 text-center">
             <div className="mb-12">
