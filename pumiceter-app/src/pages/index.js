@@ -2,10 +2,9 @@
 import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { gsap, TweenMax, ScrollSmoother } from "gsap";
-import FeedbackForm from "@/components/Feedback"
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 import { BsMouse } from "react-icons/bs";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import { Player } from '@lottiefiles/react-lottie-player';
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -96,6 +95,17 @@ export default function Home() {
       );
     });
   }, []);
+
+  const [feedbacks, setFeedbacks] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const message = e.target.message.value;
+
+    setFeedbacks([...feedbacks, { name, message }]);
+    e.target.reset();  // Reset form
+  };
 
   return (
     <>
@@ -189,6 +199,8 @@ export default function Home() {
           </nav>
         </section>
 
+
+        {/* Landing page */}
         <section
           ref={LandingSection}
           id="home"
@@ -243,6 +255,8 @@ export default function Home() {
           <div className="wave wave1"></div>
         </section>
 
+
+        {/* Product Page */}
         <section
           id="Product">
           <div className='px-6 sm:px-10  mx-auto pt-14 lg:mt-20'>
@@ -400,6 +414,8 @@ export default function Home() {
 
         </section>
 
+
+        {/* About Us with Feedback */}
         <section id="About Us" className="mt-20 lg:mt-40 py-12 bg-white bg"
           style={{
             backgroundImage: `url('/assets/about-us-image.png')`,
@@ -407,57 +423,225 @@ export default function Home() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            opacity:50,
-            
           }}
         >
-          <div className="absolute inset-0 bg-black opacity-30"></div>
           <div className="mx-auto px-6 z-10">
-            <span className='font-opensans font-light text-white text-left'>YOU CAN KNOW</span>
-            <h2 className="text-[80px] text-white font-bold font-playfair">About Us</h2>
-            <p className="text-white font-zenmaru font-light bg-black p-4">At Pumiceter, sourcing the finest pumice is our passion. We meticulously select premium pumice from the prestigious volcanic regions of the Chenab border and Balochistan, Pakistan. Our commitment to purity and performance means you can trust our products to deliver exceptional quality. Choose Pumiceter—where excellence meets reliability.
+            <span ref={addToRefs} className='font-opensans font-light text-white text-left'>YOU CAN KNOW</span>
+            <h2 ref={addToRefs} className="mb-10 text-[50px] md:text-[50px] lg:text-[80px] text-white font-bold font-playfair"
+              style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.2)' }}
+            >
+              About Us
+            </h2>
+            <p ref={addToRefs} className="mb-32 text-black font-zenmaru font-light text-[20px] bg-white p-4">
+              At Pumiceter, sourcing the finest pumice is our passion. We meticulously select premium pumice from the prestigious volcanic regions of the Chenab border and Balochistan, Pakistan. Our commitment to purity and performance means you can trust our products to deliver exceptional quality. Choose Pumiceter—where excellence meets reliability.
             </p>
-            <article className="rounded-lg shadow-md p-4 mb-5 bg-black">
-              <h3 className="text-lg font-medium text-white mb-2">Sourcing strategy</h3>
-              <p className="text-gray-300 ">
-                Our sourcing process is the backbone of our brand. With meticulous attention to detail, we identify and collaborate with top-tier suppliers to secure the finest grade of pumice. We partner with environmentally responsible mines that prioritize sustainable extraction methods, ensuring both the quality of our product..
-                Once sourced, the raw pumice undergoes a rigorous refinement process, where it is carefully processed, graded, and tested to meet the strict demands of chemical applications and textile processing. This dedication to precision guarantees that our pumice powder offers unparalleled consistency, ideal for industries such as paints, coatings, filtration, and abrasives, while our pumice stones bring durable performance for stone-washing in textile mills.
-                Our Commitment to You
-              </p>
-            </article>
-            <div className="grid grid-cols-1 md:grid-cols-2 place-items-center gap-6">
-              <article className="rounded-lg shadow-md p-4 mb-5 bg-black">
-                <h3 className="text-lg font-medium text-white mb-2">Our Commitment to You</h3>
-                <ul>
-                  <li className="text-white font-bold text-left">Quality from the Source</li>
-                  <p className="text-gray-300 ">Our entire process, from sourcing to final product delivery, is rooted in a commitment to excellence.
-                    By selecting the best raw materials and processing them with precision, we ensure our clients receive nothing but the highest-grade pumice
-                  </p>
-                  <li className="text-white font-bold text-left">Sustainability at Heart</li>
-                  <p className="text-gray-300 ">Responsible sourcing is not just a priority but a guiding principle at Pumiceter.
-                    We strive to partner with Eco-conscious suppliers to minimize the environmental footprint of our operations.
-                  </p>
-                  <li className="text-white font-bold text-left">Reliability</li>
-                  <p className="text-gray-300 ">We understand the importance of consistency in industrial applications,
-                    which is why we focus on ensuring that every batch of our pumice powder and stones meets exact specifications.
-                  </p>
-                </ul>
-              </article>
 
-              <article className="rounded-lg shadow-md p-4 mb-5 bg-black">
-                <h3 className="text-lg font-medium text-white mb-2">Who We Serve</h3>
-                <p className="text-gray-300 ">
-                  Our premium pumice products are trusted by chemical industries looking for high-performance materials and by textile manufacturers seeking reliable solutions for fabric finishing. From fine-grade pumice powder used in chemical processes to durable pumice stones for stone-washing denim, Pumiceter is the partner you can trust for quality and expertise.
-                  At Pumiceter, sourcing is our strength. We go the extra mile to ensure that the materials you receive meet the highest standards of purity and effectiveness. With us, you’re not just getting a product—you’re getting a solution built on a foundation of excellence.
-                </p>
-              </article>
+            <div className="flex flex-wrap justify-center gap-x-32">
+
+              <div className="flex flex-wrap justify-center gap-x-32">
+                <div ref={addToRefs} className="shadow-md p-8 mb-5 bg-black max-w-xs transition-all duration-300 hover:bg-gray-950 relative w-full sm:w-[300px] md:w-[350px] lg:w-[400px]"
+                  style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
+                >
+                  <h3 ref={addToRefs} className="text-[30px] font-bold text-white mb-2 font-playfair">Sourcing Strategy</h3>
+                  <ul className="text-gray-300 font-zenmaru">
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Meticulous Sourcing:</strong> We partner with top-tier suppliers for premium pumice.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Sustainable Practices:</strong> Our eco-friendly mines ensure quality and protect the environment.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Rigorous Refinement:</strong> Each batch meets the highest industry standards through strict quality checks.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Unparalleled Consistency:</strong> Our pumice powder guarantees consistent performance for critical applications.
+                    </li>
+                    <li ref={addToRefs}>
+                      <strong className='font-opensans text-[14px]'>Durable Performance:</strong> Our pumice stones are designed for longevity in industrial uses.
+                    </li>
+                  </ul>
+                  <div ref={addToRefs} className="absolute bottom-0 left-0 right-0 h-40 border-b-[8px] rounded-full"></div>
+                </div>
+
+                <div ref={addToRefs} className="shadow-md p-8 mb-5 bg-black max-w-xs transition-all duration-300 hover:bg-gray-950 relative w-full sm:w-[300px] md:w-[350px] lg:w-[400px]"
+                  style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
+                >
+                  <h3 ref={addToRefs} className="text-[30px] font-bold text-white mb-2 font-playfair">Our Commitment</h3>
+                  <ul className="text-gray-300 font-zenmaru">
+                    <li ref={addToRefs} className="mb-2 ">
+                      <strong className='font-opensans text-[14px]'>Quality from the Source:</strong> We guarantee top quality from sourcing to delivery.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Top-Quality Raw Materials:</strong> Only the best raw materials are selected for our products.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Precision Processing:</strong> Meticulous processing preserves pumice quality throughout production.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Uncompromised Quality:</strong> We provide only the highest-grade pumice for our clients.
+                    </li>
+                    <li ref={addToRefs}>
+                      <strong className='font-opensans text-[14px]'>Reliable Supply Chain:</strong> Our sourcing ensures consistent performance and reliability.
+                    </li>
+                  </ul>
+                  <div ref={addToRefs} className="absolute bottom-0 left-0 right-0 h-40 border-b-[8px] rounded-full"></div>
+                </div>
+
+                <div ref={addToRefs} className="shadow-md p-6 mb-5 bg-black max-w-xs transition-all duration-300 hover:bg-gray-950 relative w-full sm:w-[300px] md:w-[350px] lg:w-[400px]"
+                  style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
+                >
+                  <h3 ref={addToRefs} className="text-[30px] font-bold text-white mb-2 font-playfair">Who We Serve</h3>
+                  <ul className="text-gray-300 font-zenmaru">
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Industry Trust:</strong> Trusted partner for chemical and textile manufacturers, reflecting our quality reputation.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>High-Performance Products:</strong> We deliver exceptional pumice products tailored to client needs.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Versatile Applications:</strong> Our pumice serves various needs, from chemical processes to denim washing.
+                    </li>
+                    <li ref={addToRefs} className="mb-2">
+                      <strong className='font-opensans text-[14px]'>Commitment to Purity:</strong> We uphold the highest purity standards for optimal performance.
+                    </li>
+                    <li ref={addToRefs}>
+                      <strong className='font-opensans text-[14px]'>Solutions-Oriented Approach:</strong> Beyond products, we provide solutions that empower client success.
+                    </li>
+                  </ul>
+                  <div ref={addToRefs} className="absolute bottom-0 left-0 right-0 h-40 border-b-[8px] rounded-full"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* <FeedbackForm /> */}
+          <section id="Client Feedback" className='mt-20'>
+            <div className=" mx-auto px-6">
+              <span ref={addToRefs} className='font-opensans font-light text-white text-left text-[14px] lg:text-[20px]'>WE DO NEED YOUR</span>
+              <h2 ref={addToRefs} className="mb-10 text-[30px] md:text-[50px] lg:text-[80px] text-white font-bold font-playfair"
+                style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.2)' }}
+              >
+                FEEDBACK
+              </h2>
+              <div className="flex items-center -mt-14 lg:mt-[-80px]">
+                <span
+                  className="font-light whitespace-nowrap text-[30px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] italic text-white font-opensans"
+                  style={{ textShadow: '2px 2px 4px rgba(255, 255, 255, 0.2)' }}
+                  ref={addToRefs}
+                >
+                  for
+                </span>
+                <h1
+                  className="whitespace-nowrap text-[30px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[80px] font-bold ml-3 lg:ml-5 text-white font-playfair"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                  ref={addToRefs}
+                >
+                  IMPROVEMENT
+                </h1>
+              </div>
+
+              {/* Feedback Form */}
+              <div ref={addToRefs} className="bg-white p-6 shadow-md mt-24 lg:mb-32">
+                <h3 ref={addToRefs} className="lg:text-[80px] text-[26px] sm:text-[40px] md:text-[48px] font-playfair font-bold mb-4 text-black"
+                  style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                >Leave your feedback
+                </h3>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label ref={addToRefs} htmlFor="name" className="block text-lg font-medium text-black mb-3 font-opensans"
+                      style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                    >Name
+                    </label>
+                    <input ref={addToRefs} type="text" id="name" name="name" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md shadow-sm sm:text-sm"
+                      style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                      required />
+                  </div>
+                  <div>
+                    <label ref={addToRefs} htmlFor="message" className="block text-lg font-medium text-black font-opensans mb-3"
+                      style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+                    >Feedback
+                    </label>
+                    <textarea ref={addToRefs} id="message" name="message" rows="4" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md mb-10 shadow-sm sm:text-sm" required></textarea>
+                  </div>
+                  <div className="flex justify-center lg:justify-end">
+                    <button type="submit" className="bg-black text-white px-10 py-4 lg:px-32 lg:py-4 rounded-full font-zenmaru font-bold duration-500 border border-black hover:border-black hover:bg-transparent hover:text-black">Submit</button>
+                  </div>
+                </form>
+              </div>
+
+
+
+              {/* Display Feedback */}
+              <div className="space-y-6">
+                {feedbacks.map((feedback, index) => (
+                  <div key={index} className="bg-white p-4 rounded-lg shadow-md">
+                    <h4 className="text-lg font-semibold">{feedback.name}</h4>
+                    <p className="text-gray-600">{feedback.message}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+        </section>
+
+
+        {/* Contact Us */}
+        <section id="Contact-Us" className="relative">
+          <div className="-mt-11 lg:-mt-[55px] wave wave1 absolute top-0 left-0 right-0 bg-black"></div> {/* Positioned at the top of the section */}
+
+          <div className=" bg-black px-6 md:px-32 py-16 text-center">
+            <div className="mb-12">
+              <h1
+                className="lg:text-left text-center whitespace-nowrap text-[40px] sm:text-[45px] md:text-[50px] lg:text-[80px] font-bold text-white font-playfair"
+                style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
+              >
+                CONTACT US
+              </h1>
+            </div>
+
+            <div className="mt-20 text-white flex flex-col md:flex-row justify-center items-center space-y-12 md:space-y-0 md:space-x-24 lg:space-x-40">
+              <div className="text-center md:text-left">
+                <h2 className="font-opensans text-[30px] font-bold mb-4">Address</h2>
+                <p className="font-zenmaru text-[16px]">Faisalabad City, Faisalabad</p>
+              </div>
+              <div className="text-center md:text-left">
+                <h2 className="font-opensans text-[30px] font-bold mb-4">Contact</h2>
+                <p className="font-zenmaru text-[16px]">pumiceter@gmail.com</p>
+                <p className="font-zenmaru text-[16px]">+92 310-1742404</p>
+              </div>
+              <div className="text-center md:text-left">
+                <h2 className="font-opensans text-[30px] font-bold mb-4">Social</h2>
+                <div className="flex space-x-4 justify-center md:justify-start">
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61550325253910&mibextid=ZbWKwL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition duration-300 transform hover:scale-110"
+                  >
+                    <FaFacebookF className="text-[24px] hover:text-gray-400" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition duration-300 transform hover:scale-110"
+                  >
+                    <FaInstagram className="text-[24px] hover:text-gray-400" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 border-t border-gray-700 pt-6">
+              <p className="font-zenmaru text-[14px] text-gray-400">
+                © 2024 Pumiceter. All rights reserved.
+              </p>
             </div>
           </div>
         </section>
 
-        <FeedbackForm />
-
-        <section id="Contact Us" ></section>
 
       </div>
     </>
