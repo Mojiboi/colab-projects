@@ -354,13 +354,14 @@ export default function Home() {
                 <div className="bg-black shadow-md w-full h-[400px] lg:h-[700px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
                   style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
                 >
-                  <img src="/assets/pumices-stone.png" alt="Product 1" className="w-full h-full lg:w-96 lg:h-[600px] object-cover" />
+                  <img src="/assets/pumice-150-mesh-powder.png" alt="Product 1" className="sm:w-60 sm:h-[270px] lg:w-96 lg:h-[400px] md:w-80 md:h-[320px] object-cover" />
+                  
                 </div>
                 {/* Heading outside the black div */}
                 <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
                   style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                 >
-                  Pumice Stone
+                  Pumice 300 Mesh
                 </h3>
               </div>
 
@@ -414,13 +415,13 @@ export default function Home() {
                 <div className="bg-black shadow-md w-full h-[400px] lg:h-[700px] overflow-hidden hover:scale-95 transform transition duration-500 ease-in-out flex items-center justify-center"
                   style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
                 >
-                  <img src="/assets/pumice-150-mesh-powder.png" alt="Product 1" className="sm:w-60 sm:h-[270px] lg:w-96 lg:h-[400px] md:w-80 md:h-[320px] object-cover" />
+                  <img src="/assets/pumices-stone.png" alt="Product 1" className="w-full h-full lg:w-96 lg:h-[600px] object-cover" />
                 </div>
                 {/* Heading */}
                 <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
                   style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                 >
-                  Pumice 300 Mesh
+                  Pumice Stone
                 </h3>
               </div>
 
