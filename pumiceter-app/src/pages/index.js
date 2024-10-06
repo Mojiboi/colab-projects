@@ -141,7 +141,7 @@ export default function Home() {
                 <div className="flex items-center">
                   <img src="/assets/4.png" className="h-16 w-16 mr-2" alt="Logo" />
                   <a href='#' className=''>
-                    <h1 className="text-white text-2xl font-playfair items">PUMICETERS</h1>
+                    <h1 className="text-white text-2xl font-playfair items">PUMICETER</h1>
                   </a>
                 </div>
 
@@ -249,7 +249,7 @@ export default function Home() {
                     className="h1_second whitespace-nowrap text-[32px] sm:text-[40px] md:text-[48px] lg:text-[80px] xl:text-[100px] font-bold ml-5 text-black font-playfair"
                     style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                   >
-                    PUMICETERS
+                    PUMICETER
                   </h1>
                 </div>
               </div>
@@ -380,7 +380,7 @@ export default function Home() {
                 <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
                   style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                 >
-                  Pumice Powder
+                  Pumice 150 Mesh
                 </h3>
               </div>
 
