@@ -98,7 +98,7 @@ export default function Home() {
 
   const sendEmail = (e) => {
     e.preventDefault(); // Prevent the default form submission
-  
+
     emailjs
       .sendForm(
         'Pumiceter@gmail.com', // Replace with your EmailJS service ID
@@ -116,7 +116,7 @@ export default function Home() {
           alert('There was an error, please try again.');
         }
       );
-  
+
     e.target.reset(); // Reset form after submission
   };
 
@@ -306,8 +306,7 @@ export default function Home() {
                     <div className="flex items-start">
                       <div ref={addToRefs} className="plans-line bg-black h-[1.2px] w-[82px] sm:w-[104px] md:w-[124px] lg:w-[166px] hidden md:block mt-4"></div>
                       <p ref={addToRefs} className="plans_para pl-4 text-justify lg:text-left max-w-[50ch] font-opensans font-light text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] lg:m-0 m-4">
-                        Pumice powder is a natural, eco-friendly exfoliant that gently removes dead skin cells, leaving your skin smooth and rejuvenated. Its fine, porous texture also makes it ideal for polishing surfaces, providing a non-toxic, effective solution for deep cleaning.
-                      </p>
+                        Our finely milled pumice powder is perfect for abrasive and chemical processes, providing eco-friendly, efficient polishing, cleaning, and surface refining in industries like metals, ceramics, and plastics. In addition, our textile-grade pumice stone is ideal for stonewashing fabrics, creating a unique, worn-in texture for garments while ensuring minimal fiber damage. Both products are sourced from premium pumice to guarantee top-notch performance and consistency for diverse industrial needs.</p>
                     </div>
 
                     {/* Button aligned below paragraph */}
@@ -355,7 +354,7 @@ export default function Home() {
                   style={{ cursor: "url('/assets/arrow.svg'), auto", color: "white" }}
                 >
                   <img src="/assets/pumice-150-mesh-powder.png" alt="Product 1" className="sm:w-60 sm:h-[270px] lg:w-96 lg:h-[400px] md:w-80 md:h-[320px] object-cover" />
-                  
+
                 </div>
                 {/* Heading outside the black div */}
                 <h3 className="text-black text-[24px] sm:text-[30px] lg:text-[35px] font-bold font-playfair mt-2 text-left"
