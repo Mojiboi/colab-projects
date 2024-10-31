@@ -568,7 +568,7 @@ export default function Home() {
                       style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                     >Name
                     </label>
-                    <input ref={addToRefs} type="text" id="name" name="from_name" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md shadow-sm sm:text-sm"
+                    <input ref={addToRefs} placeholder='Your Name here' type="text" id="name" name="from_name" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md shadow-sm sm:text-sm"
                       style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                       required />
                   </div>
@@ -577,7 +577,7 @@ export default function Home() {
                       style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)' }}
                     >Feedback
                     </label>
-                    <textarea ref={addToRefs} id="message" name="message" rows="4" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md mb-10 shadow-sm sm:text-sm" required></textarea>
+                    <textarea ref={addToRefs} placeholder='Your Feedback here' id="message" name="message" rows="4" className="mt-1 block bg-black w-full px-4 py-2 border border-black text-white rounded-md mb-10 shadow-sm sm:text-sm" required></textarea>
                   </div>
                   <div className="flex justify-center lg:justify-end">
                     <button type="submit" className="bg-black text-white px-10 py-4 lg:px-32 lg:py-4 rounded-full font-zenmaru font-bold duration-500 border border-black hover:border-black hover:bg-transparent hover:text-black">Submit</button>
