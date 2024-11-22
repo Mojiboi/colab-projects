@@ -6,14 +6,14 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         {/* Basic SEO */}
-        <title>Pumiceter - Innovative Solutions for a Better Future</title>
+        <title>Pumiceter - Best Pumice Powder and Stone Website</title>
         <meta
           name="description"
-          content="Pumiceter.com offers innovative solutions tailored to your needs. Discover a future of possibilities with our cutting-edge services and products."
+          content="Pumiceter.com is the ultimate destination for pumice, pumice powder, pumice stone, and meshed pumice products. Discover the best pumice powder websites and explore a range of premium pumice products."
         />
         <meta
           name="keywords"
-          content="Pumiceter, innovative solutions, technology, cutting-edge services, future, smart tools, innovation"
+          content="Pumiceter, pumice, pumice powder, pumice stone, pumice mesh powder, pumice meshed 200mg, pumice meshed 300mg, best pumice website, pumice powder websites"
         />
         <meta name="author" content="Pumiceter Team" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,11 +21,11 @@ function MyApp({ Component, pageProps }) {
         {/* Open Graph / Social Media */}
         <meta
           property="og:title"
-          content="Pumiceter - Innovative Solutions for a Better Future"
+          content="Pumiceter - Best Pumice Powder and Stone Website"
         />
         <meta
           property="og:description"
-          content="Discover Pumiceter.com, where innovation meets excellence. Explore our advanced services and tools designed to shape a smarter tomorrow."
+          content="Find premium pumice products, including pumice powder and pumice stone, at Pumiceter.com. The best pumice powder website for quality and reliability."
         />
         <meta
           property="og:image"
@@ -38,11 +38,11 @@ function MyApp({ Component, pageProps }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Pumiceter - Innovative Solutions for a Better Future"
+          content="Pumiceter - Best Pumice Powder and Stone Website"
         />
         <meta
           name="twitter:description"
-          content="Step into the future with Pumiceter.com. Experience innovation and excellence like never before."
+          content="Discover the best pumice powder, pumice stone, and meshed pumice products on Pumiceter.com."
         />
         <meta
           name="twitter:image"
